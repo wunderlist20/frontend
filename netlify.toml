@@ -1,6 +1,10 @@
+[Settings]
+ID = "c800c913-9967-44fd-9146-de0b435fbfd5"
+
 [build]
   base = "wunderlist/"
   publish = "wunderlist/build"
+  command = "yarn build"
 
 [[redirects]]
   from = "/*"
