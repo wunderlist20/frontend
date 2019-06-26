@@ -87,7 +87,7 @@ class Login extends React.Component {
     e.preventDefault();
 
     this.props.login(this.state.creds)
-    .then(() => this.props.history.push('/'));
+    .then(() => this.props.history.push('/todolist'));
 };
 }
 

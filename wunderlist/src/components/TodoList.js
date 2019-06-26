@@ -1,8 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
-import { Form, Input, Button } from "reactstrap";
-// import { TweenLite, Power1 } from "gsap";
+import { Form, Input } from "reactstrap";
 
 import { fetchTodos, addTodo } from "./actions/actions";
 
