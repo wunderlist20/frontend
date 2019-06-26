@@ -7,9 +7,9 @@ import { fetchTodos, addTodo } from "./actions/actions";
 
 class TodoList extends React.Component {
   state = {
-    item: "",
-    label: "",
-    due: ""
+    title: "",
+    task: "",
+    setDate: ""
   };
   render() {
     return (
@@ -22,10 +22,10 @@ class TodoList extends React.Component {
           <>
             {this.props.todos.map(todo => (
               <div className="card">
-                <h3>{todo.due}</h3>
+                <h3>{todo.title}</h3>
                 <div className="card-body">
-                  <h1>{todo.item}</h1>
-                  <h3>{todo.label}</h3>
+                  <h1>{todo.task}</h1>
+                  <h3>{todo.setDate}</h3>
                 </div>
               </div>
             ))}
@@ -86,9 +86,9 @@ class TodoList extends React.Component {
   addTodo = e => {
     e.preventDefault();
     const newTodo = {
-      item: this.state.item,
-      label: this.state.label,
-      due: this.state.due
+      title: this.state.title,
+      task: this.state.task,
+      setDate: this.state.setDate
     };
     this.props.addTodo(newTodo);
   };
