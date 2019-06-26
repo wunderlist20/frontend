@@ -1,4 +1,5 @@
 import axios from "axios";
+import { axiosWithAuth } from "../../utilities/axiosWithAuth";
 
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -18,11 +19,12 @@ export const ADD_TODO_FAILURE = "ADD_TODO_FAILURE";
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
 
-  return axios
+  return axiosWithAuth()
     .post("https://wunderlist-02.herokuapp.com/api/auth/login", creds)
     .then(res => {
-      localStorage.setItem("token", res.data.payload);
-      dispatch({ type: LOGIN_SUCCESS });
+      localStorage.setItem("token", res.data.token);
+      console.log(res);
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data.token });
     })
     .catch(err => {
       dispatch({ type: LOGIN_FAILURE, payload: true });
@@ -67,15 +69,14 @@ export const addTodo = newTodo => dispatch => {
 // Delete Todo
 
 export const deleteTodo = id => dispatch => {
-
   return axios
-.delete('https://wunderlist-02.herokuapp.com/api/todos/:id')
-.then(res => {
-  dispatch({ type: DELETE_TODO, payload: id});
-})
-.catch(err => {
-  console.log(err)
-});
+    .delete("https://wunderlist-02.herokuapp.com/api/todos/:id")
+    .then(res => {
+      dispatch({ type: DELETE_TODO, payload: id });
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };
 
 // Edit Todo

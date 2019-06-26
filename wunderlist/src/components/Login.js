@@ -85,7 +85,7 @@ class Login extends React.Component {
 
   login = (e) => {
     e.preventDefault();
-
+console.log("clicked")
     this.props.login(this.state.creds)
     .then(() => this.props.history.push('/todolist'));
 };
