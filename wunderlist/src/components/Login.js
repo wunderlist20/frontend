@@ -17,7 +17,7 @@ class Login extends React.Component {
     return (
       <div className="login-wrapper">
         <Form>
-          <img src="https://i.imgur.com/qp70wn0.png" alt="Logo" />
+          <h2 className="login-here">Ready to get started?</h2>
           <div>
             <Input
               placeholder="username"
@@ -25,7 +25,9 @@ class Login extends React.Component {
               value={this.state.creds.username}
               onChange={this.handleChanges}
               className={
-                this.props.error === true ? "error login-input" : "login-input"
+                this.props.error === true
+                  ? "error login-input"
+                  : "login-input"
               }
               required
             />
@@ -39,7 +41,9 @@ class Login extends React.Component {
               value={this.state.creds.password}
               onChange={this.handleChanges}
               className={
-                this.props.error === true ? "error login-input" : "login-input"
+                this.props.error === true
+                  ? "error login-input"
+                  : "login-input"
               }
               required
             />
@@ -50,7 +54,7 @@ class Login extends React.Component {
               {this.props.loggingIn === true ? (
                 <Loader
                   type="ThreeDots"
-                  color="#fb553b"
+                  color="##00bfff"
                   height={80}
                   width={80}
                 />
