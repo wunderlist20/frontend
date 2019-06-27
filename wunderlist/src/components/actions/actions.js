@@ -20,7 +20,7 @@ export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
 
   return axiosWithAuth()
-    .post("https://wunderlist-02.herokuapp.com/api/auth/login", creds)
+    .post("/auth/login", creds)
     .then(res => {
       localStorage.setItem("token", res.data.token);
       console.log(res);
@@ -37,10 +37,8 @@ export const login = creds => dispatch => {
 
 export const fetchTodos = () => dispatch => {
   dispatch({ type: FETCH_TODOS_START });
-  axios
-    .get("https://wunderlist-02.herokuapp.com/api/todos/", {
-      headers: { Authorization: localStorage.getItem("token") }
-    })
+  axiosWithAuth()
+    .get("/todos")
     .then(res => {
       dispatch({ type: FETCH_TODOS_SUCCESS, payload: res.data });
     })
@@ -52,12 +50,12 @@ export const fetchTodos = () => dispatch => {
 // Add Todo - add a new todo, and return the created object. title, task and setDate are required fields. user_id, notes, and completed are optional fields.
 
 export const addTodo = newTodo => dispatch => {
-  axios
-    .post("https://wunderlist-02.herokuapp.com/api/todos/", newTodo, {
-      headers: { Authorization: localStorage.getItem("token") }
-    })
+  console.log(newTodo)
+  axiosWithAuth()
+    .post("/todos", newTodo)
     .then(res => {
-      dispatch({ type: ADD_TODO, payload: res.data.token });
+      console.log(res.data)
+      dispatch({ type: ADD_TODO, payload: res.data });
     })
     .catch(err => {
       console.log(err);
@@ -68,8 +66,8 @@ export const addTodo = newTodo => dispatch => {
 // Delete Todo
 
 export const deleteTodo = id => dispatch => {
-  return axios
-    .delete("https://wunderlist-02.herokuapp.com/api/todos/:id")
+  return axiosWithAuth()
+    .delete("/todos/:id")
     .then(res => {
       dispatch({ type: DELETE_TODO, payload: id });
     })

@@ -21,20 +21,20 @@ export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_START:
       return {
-        ...state, 
+        ...state,
         loggingIn: true,
         error: false
       };
       case LOGIN_SUCCESS:
       return {
-        ...state, 
+        ...state,
         loggingIn: false,
         error: false,
         token: localStorage.getItem('token')
       };
           case LOGIN_FAILURE:
       return {
-        ...state, 
+        ...state,
         loggingIn: false,
         error: action.payload
       };
@@ -60,7 +60,7 @@ export const reducer = (state = initialState, action) => {
     case ADD_TODO:
       return {
         ...state,
-        todos: action.payload
+        todos: [...state.todos, action.payload]
       };
     case ADD_TODO_FAILURE:
       return {

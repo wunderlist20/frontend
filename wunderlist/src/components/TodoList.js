@@ -21,7 +21,7 @@ class TodoList extends React.Component {
         ) : (
           <>
             {this.props.todos.map(todo => (
-              <div className="card">
+              <div className="card" key={todo.id}>
                 <CardHeader tag="h3">{todo.title}</CardHeader>
                 <div className="card-body">
                   <h1>{todo.task}</h1>
@@ -40,7 +40,7 @@ class TodoList extends React.Component {
                   className="login-input"
                   onChange={this.handleChanges}
                 />
-                <i class="fas fa-list" />
+                <i className="fas fa-list" />
               </div>
               <div>
                 <Input
@@ -50,7 +50,7 @@ class TodoList extends React.Component {
                   className="login-input"
                   onChange={this.handleChanges}
                 />
-                <i class="fas fa-bell" />
+                <i className="fas fa-bell" />
               </div>
               <div>
                 <Input
@@ -60,13 +60,13 @@ class TodoList extends React.Component {
                   className="login-input"
                   onChange={this.handleChanges}
                 />
-                <i class="fas fa-calendar-alt" />
+                <i className="fas fa-calendar-alt" />
               </div>
               <div>
                 <div className="btn-login shd" onClick={this.addTodo}>
                   <h3>Add Todo</h3>
                 </div>
-                <i class="fas fa-sign-in-alt" />
+                <i className="fas fa-sign-in-alt" />
               </div>
             </Form>
           </>
