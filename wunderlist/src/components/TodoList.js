@@ -23,12 +23,22 @@ class TodoList extends React.Component {
             {this.props.todos.map(todo => (
               <div className="card" key={todo.id}>
                 <CardHeader tag="h3">{todo.title}</CardHeader>
-                <div className="card-body">
+                <CardText>
                   <h1>{todo.task}</h1>
-                  <CardFooter className="text-muted">
-                    <h3>{todo.setDate}</h3>
-                  </CardFooter>
-                </div>
+                  <button
+                    className="btn-delete shd"
+                    onClick={() => this.props.deleteTodo(todo.id)}
+                  >
+                    <h4>Delete</h4>
+                  </button>
+                  <button onClick={() => {
+                    const { id, title, task, setDate } = todo;
+                    this.props.history.push('/update', [id, title, task, setDate]);
+                  }}><h4>Edit</h4></button>
+                </CardText>
+                <CardFooter>
+                  <h3>{todo.setDate}</h3>
+                </CardFooter>
               </div>
             ))}
             <Form className="todo-form">
@@ -105,6 +115,7 @@ export default connect(
   mapStateToProps,
   {
     fetchTodos,
-    addTodo
+    addTodo,
+    deleteTodo
   }
 )(TodoList);
