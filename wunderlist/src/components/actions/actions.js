@@ -67,9 +67,9 @@ export const addTodo = newTodo => dispatch => {
 
 export const deleteTodo = id => dispatch => {
   return axiosWithAuth()
-    .delete("/todos/:id")
+    .delete(`/todos/${id}`)
     .then(res => {
-      dispatch({ type: DELETE_TODO, payload: id });
+      dispatch({ type: DELETE_TODO, payload: res.data.id });
     })
     .catch(err => {
       console.log(err);
