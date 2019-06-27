@@ -84,9 +84,16 @@ export const deleteTodo = id => dispatch => {
 
 // Edit Todo
 
-export const editTodo = changes => dispatch => {
-  dispatch({ type: EDIT_TODOS_START });
-  axiosWithAuth().put("https://wunderlist-02.herokuapp.com/api/todos/$");
+export const editTodo = (id, changes) => dispatch => {
+  dispatch({ type: EDIT_TODO_START });
+  axiosWithAuth()
+    .put(`/todos/${id}`, changes)
+    .then(res => {
+      dispatch({ type: EDIT_TODO_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: EDIT_TODO_FAILURE, payload: err });
+    });
 };
 
 // View profile by ID

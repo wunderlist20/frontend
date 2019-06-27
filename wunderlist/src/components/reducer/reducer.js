@@ -7,7 +7,8 @@ import {
   FETCH_TODOS_FAILURE,
   ADD_TODO,
   ADD_TODO_FAILURE,
-  DELETE_TODO
+  DELETE_TODO,
+  EDIT_TODO_SUCCESS
 } from "../actions/actions";
 
 const initialState = {
@@ -72,6 +73,13 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         todos: state.todos.filter(todo => todo.id !== action.payload)
+      };
+    case EDIT_TODO_SUCCESS:
+      return {
+        ...state,
+        todos: state.todos.map(todo =>
+          todo.id === action.payload.id ? action.payload : todo
+        )
       };
     default:
       return state;
