@@ -14,6 +14,10 @@ export const FETCH_TODOS_FAILURE = "FETCH_TODOS_FAILURE";
 export const ADD_TODO = "ADD_TODO";
 export const ADD_TODO_FAILURE = "ADD_TODO_FAILURE";
 
+export const EDIT_TODO_START = "EDIT_TODO_START";
+export const EDIT_TODO_SUCCESS = "EDIT_TODO_SUCCESS";
+export const EDIT_TODO_FAILURE = "EDIT_TODO_FAILURE";
+
 // Login
 
 export const login = creds => dispatch => {
@@ -77,6 +81,18 @@ export const deleteTodo = id => dispatch => {
 };
 
 // Edit Todo
+
+export const editTodo = (id, changes) => dispatch => {
+  dispatch({ type: EDIT_TODO_START });
+  axiosWithAuth()
+    .put(`/todos/${id}`, changes)
+    .then(res => {
+      dispatch({ type: EDIT_TODO_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: EDIT_TODO_FAILURE, payload: err });
+    });
+};
 
 // View profile by ID
 
