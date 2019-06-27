@@ -266,6 +266,11 @@ i {
   box-shadow: -4px 5px 18px -3px rgba(0, 0, 0, 0.75);
   border-radius: 5px;
   background-color: #00bfff;
+  background: radial-gradient(
+    circle,
+  #4694ea 0%,
+    rgb(148, 220, 233) 100%
+      );
   color: white;
   cursor: pointer;
 }

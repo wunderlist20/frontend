@@ -14,9 +14,9 @@ export const ADD_TODO_FAILURE = "ADD_TODO_FAILURE";
 
 export const DELETE_TODO = "DELETE_TODO";
 
-export const EDIT_TODOS_START = "FETCH_TODOS_START";
-export const EDIT_TODOS_SUCCESS = "FETCH_TODOS_SUCCESS";
-export const EDIT_TODOS_FAILURE = "FETCH_TODOS_FAILURE";
+export const EDIT_TODO_START = "FETCH_TODO_START";
+export const EDIT_TODO_SUCCESS = "FETCH_TODO_SUCCESS";
+export const EDIT_TODO_FAILURE = "FETCH_TODO_FAILURE";
 
 // Login
 
@@ -84,15 +84,30 @@ export const deleteTodo = id => dispatch => {
 
 // Edit Todo
 
-export const editTodo = (id, changes) => dispatch => {
-  dispatch({ type: EDIT_TODO_START });
+// export const editTodo = (id, changes) => dispatch => {
+//   dispatch({ type: EDIT_TODO_START });
+//   axiosWithAuth()
+//     .put(`/todos/${id}`, changes)
+//     .then(res => {
+//       dispatch({ type: EDIT_TODO_SUCCESS, payload: res.data });
+//     })
+//     .catch(err => {
+//       dispatch({ type: EDIT_TODO_FAILURE, payload: err });
+//     });
+// };
+
+export const TODO_UPDATE_START = "TODO_UPDATE_START";
+export const TODO_UPDATE_SUCCESS = "TODO_UPDATE_SUCCESS";
+export const TODO_UPDATE_FAILURE = "TODO_UPDATE_FAILURE";
+export const updateTodo = (id, changes) => dispatch => {
+  dispatch({ type: TODO_UPDATE_START });
   axiosWithAuth()
     .put(`/todos/${id}`, changes)
     .then(res => {
-      dispatch({ type: EDIT_TODO_SUCCESS, payload: res.data });
+      dispatch({ type: TODO_UPDATE_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: EDIT_TODO_FAILURE, payload: err });
+      dispatch({ type: TODO_UPDATE_FAILURE, payload: err });
     });
 };
 

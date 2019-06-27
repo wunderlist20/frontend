@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
-import { Form, Input, CardHeader, CardFooter } from "reactstrap";
+import { Form, Input, CardHeader, CardText, CardFooter } from "reactstrap";
 
 import { fetchTodos, addTodo, deleteTodo } from "./actions/actions";
 
@@ -23,18 +23,18 @@ class TodoList extends React.Component {
             {this.props.todos.map(todo => (
               <div className="card">
                 <CardHeader tag="h3">{todo.title}</CardHeader>
-                <div className="card-body">
+            <CardText>
                   <h1>{todo.task}</h1>
                   <button
                     className="btn-delete shd"
                     onClick={() => this.props.deleteTodo(todo.id)}
                   >
                     <h4>Delete</h4>
-                  </button>
-                  <CardFooter className="text-muted">
-                    <h3>{todo.setDate}</h3>
-                  </CardFooter>
-                </div>
+                  </button><button><h4>Edit</h4></button>
+                </CardText>
+                <CardFooter>
+                  <h3>{todo.setDate}</h3>
+                </CardFooter>
               </div>
             ))}
             <Form className="todo-form">

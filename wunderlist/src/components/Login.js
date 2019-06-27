@@ -2,7 +2,6 @@ import React from "react";
 import Loader from "react-loader-spinner";
 import { connect } from "react-redux";
 import { Form, Input } from "reactstrap";
-
 import { login } from "./actions/actions";
 
 class Login extends React.Component {
