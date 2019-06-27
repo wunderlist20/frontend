@@ -146,6 +146,12 @@ h3 {
   font-family: "Roboto", sans-serif;
 }
 
+h4 {
+   font-size: 20px;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+}
+
 .login-wrapper {
   display: flex;
 }
@@ -322,6 +328,10 @@ i {
   margin: 20px;
   box-shadow: 10px 10px 29px 0px rgba(0, 0, 0, 0.75);
   animation: fade-in-fwd 1.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+.text-muted {
+ margin-top: 180px;
 }
 
 @keyframes fade-in-fwd {

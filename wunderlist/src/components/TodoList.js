@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
-import { Form, Input } from "reactstrap";
+import { Form, Input, CardHeader, CardFooter } from "reactstrap";
 
 import { fetchTodos, addTodo } from "./actions/actions";
 
@@ -22,10 +22,12 @@ class TodoList extends React.Component {
           <>
             {this.props.todos.map(todo => (
               <div className="card">
-                <h3>{todo.title}</h3>
+                <CardHeader tag="h3">{todo.title}</CardHeader>
                 <div className="card-body">
                   <h1>{todo.task}</h1>
-                  <h3>{todo.setDate}</h3>
+                  <CardFooter className="text-muted">
+                    <h3>{todo.setDate}</h3>
+                  </CardFooter>
                 </div>
               </div>
             ))}
@@ -34,7 +36,7 @@ class TodoList extends React.Component {
                 <Input
                   placeholder="What do you need to do?"
                   name="item"
-                  value={this.state.item}
+                  value={this.state.task}
                   className="login-input"
                   onChange={this.handleChanges}
                 />
@@ -42,9 +44,9 @@ class TodoList extends React.Component {
               </div>
               <div>
                 <Input
-                  placeholder="How important is it?"
+                  placeholder="What category is it?"
                   name="label"
-                  value={this.state.label}
+                  value={this.state.title}
                   className="login-input"
                   onChange={this.handleChanges}
                 />
@@ -54,7 +56,7 @@ class TodoList extends React.Component {
                 <Input
                   placeholder="When is it due?"
                   name="due"
-                  value={this.state.due}
+                  value={this.state.setDate}
                   className="login-input"
                   onChange={this.handleChanges}
                 />
