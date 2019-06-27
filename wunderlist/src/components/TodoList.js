@@ -35,7 +35,7 @@ class TodoList extends React.Component {
               <div>
                 <Input
                   placeholder="What do you need to do?"
-                  name="item"
+                  name="task"
                   value={this.state.task}
                   className="login-input"
                   onChange={this.handleChanges}
@@ -45,7 +45,7 @@ class TodoList extends React.Component {
               <div>
                 <Input
                   placeholder="What category is it?"
-                  name="label"
+                  name="title"
                   value={this.state.title}
                   className="login-input"
                   onChange={this.handleChanges}
@@ -55,7 +55,7 @@ class TodoList extends React.Component {
               <div>
                 <Input
                   placeholder="When is it due?"
-                  name="due"
+                  name="setDate"
                   value={this.state.setDate}
                   className="login-input"
                   onChange={this.handleChanges}

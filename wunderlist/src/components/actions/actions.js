@@ -57,8 +57,7 @@ export const addTodo = newTodo => dispatch => {
       headers: { Authorization: localStorage.getItem("token") }
     })
     .then(res => {
-      console.log("hi", res.data);
-      dispatch({ type: ADD_TODO, payload: res.data });
+      dispatch({ type: ADD_TODO, payload: res.data.token });
     })
     .catch(err => {
       console.log(err);
