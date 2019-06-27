@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import { Form, Input, CardHeader, CardFooter } from "reactstrap";
 
-import { fetchTodos, addTodo } from "./actions/actions";
+import { fetchTodos, addTodo, deleteTodo } from "./actions/actions";
 
 class TodoList extends React.Component {
   state = {
@@ -25,6 +25,12 @@ class TodoList extends React.Component {
                 <CardHeader tag="h3">{todo.title}</CardHeader>
                 <div className="card-body">
                   <h1>{todo.task}</h1>
+                  <button
+                    className="btn-delete shd"
+                    onClick={() => this.props.deleteTodo(todo.id)}
+                  >
+                    <h4>Delete</h4>
+                  </button>
                   <CardFooter className="text-muted">
                     <h3>{todo.setDate}</h3>
                   </CardFooter>
@@ -75,7 +81,7 @@ class TodoList extends React.Component {
     );
   }
   componentDidMount() {
-       this.props.fetchTodos();
+    this.props.fetchTodos();
   }
 
   handleChanges = e => {
@@ -105,6 +111,7 @@ export default connect(
   mapStateToProps,
   {
     fetchTodos,
-    addTodo
+    addTodo, 
+    deleteTodo
   }
 )(TodoList);

@@ -6,7 +6,8 @@ import {
   FETCH_TODOS_SUCCESS,
   FETCH_TODOS_FAILURE,
   ADD_TODO,
-  ADD_TODO_FAILURE
+  ADD_TODO_FAILURE,
+  DELETE_TODO
 } from "../actions/actions";
 
 const initialState = {
@@ -21,24 +22,24 @@ export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_START:
       return {
-        ...state, 
+        ...state,
         loggingIn: true,
         error: false
       };
-      case LOGIN_SUCCESS:
+    case LOGIN_SUCCESS:
       return {
-        ...state, 
+        ...state,
         loggingIn: false,
         error: false,
-        token: localStorage.getItem('token')
+        token: localStorage.getItem("token")
       };
-          case LOGIN_FAILURE:
+    case LOGIN_FAILURE:
       return {
-        ...state, 
+        ...state,
         loggingIn: false,
         error: action.payload
       };
-      case FETCH_TODOS_START:
+    case FETCH_TODOS_START:
       return {
         ...state,
         loading: true,
@@ -66,6 +67,11 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         error: action.payload
+      };
+    case DELETE_TODO:
+      return {
+        ...state,
+        todos: state.todos.filter(todo => todo.id !== action.payload)
       };
     default:
       return state;

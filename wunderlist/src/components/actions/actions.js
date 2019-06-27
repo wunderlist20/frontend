@@ -5,14 +5,18 @@ export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
 
-export const DELETE_TODO = "DELETE_TODO";
-
 export const FETCH_TODOS_START = "FETCH_TODOS_START";
 export const FETCH_TODOS_SUCCESS = "FETCH_TODOS_SUCCESS";
 export const FETCH_TODOS_FAILURE = "FETCH_TODOS_FAILURE";
 
 export const ADD_TODO = "ADD_TODO";
 export const ADD_TODO_FAILURE = "ADD_TODO_FAILURE";
+
+export const DELETE_TODO = "DELETE_TODO";
+
+export const EDIT_TODOS_START = "FETCH_TODOS_START";
+export const EDIT_TODOS_SUCCESS = "FETCH_TODOS_SUCCESS";
+export const EDIT_TODOS_FAILURE = "FETCH_TODOS_FAILURE";
 
 // Login
 
@@ -57,7 +61,7 @@ export const addTodo = newTodo => dispatch => {
       headers: { Authorization: localStorage.getItem("token") }
     })
     .then(res => {
-      dispatch({ type: ADD_TODO, payload: res.data.token });
+      dispatch({ type: ADD_TODO, payload: res.data });
     })
     .catch(err => {
       console.log(err);
@@ -68,10 +72,10 @@ export const addTodo = newTodo => dispatch => {
 // Delete Todo
 
 export const deleteTodo = id => dispatch => {
-  return axios
-    .delete("https://wunderlist-02.herokuapp.com/api/todos/:id")
+  return axiosWithAuth()
+    .delete(`https://wunderlist-02.herokuapp.com/api/todos/${id}`)
     .then(res => {
-      dispatch({ type: DELETE_TODO, payload: id });
+      dispatch({ type: DELETE_TODO, payload: res.data.id });
     })
     .catch(err => {
       console.log(err);
@@ -79,6 +83,11 @@ export const deleteTodo = id => dispatch => {
 };
 
 // Edit Todo
+
+export const editTodo = changes => dispatch => {
+  dispatch({ type: EDIT_TODOS_START });
+  axiosWithAuth().put("https://wunderlist-02.herokuapp.com/api/todos/$");
+};
 
 // View profile by ID
 
