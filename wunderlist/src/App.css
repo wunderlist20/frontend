@@ -152,6 +152,12 @@ h4 {
   font-family: "Roboto", sans-serif;
 }
 
+form {
+  width: 400px;
+  height: 600px;
+  border: 1px solid black;
+}
+
 .login-wrapper {
   display: flex;
 }

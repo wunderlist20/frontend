@@ -1,14 +1,28 @@
-import { updateTodo } from "../actions";
-import { Form, Input, CardHeader, CardText, CardFooter } from "reactstrap";
-import { useInput } from "../hooks";
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { updateTodo } from "./actions/actions";
+import { Form, Input } from "reactstrap";
+import { withRouter } from "react-router-dom";
 
-const todoForm = ({ updateTodo, history, location }) => {
+import "../App.css";
+
+const useInput = () => {
+  const [value, setValue] = useState("");
+
+  const updateValue = e => {
+    setValue(e.target.value);
+  };
+
+  return [value, setValue, updateValue];
+};
+
+const TodoForm = ({ updateTodo, history, location }) => {
   const [title, setTitle, updateTitle] = useInput();
   const [task, setTask, updateTask] = useInput();
   const [date, setDate, updateDate] = useInput();
   const [capturedID, setCapturedID] = useInput();
 
-    useEffect(() => {
+  useEffect(() => {
     const { state } = location;
     if (state) {
       console.log(state);
@@ -18,51 +32,50 @@ const todoForm = ({ updateTodo, history, location }) => {
       setDate(date);
       setCapturedID(id);
     }
-  }, []);
+  }, [location, setCapturedID, setDate, setTask, setTitle]);
 
   const submitTodo = e => {
     e.preventDefault();
 
     const todo = { title, task, date };
-    const submit = capturedID ? updateSmurf;
-    const args = capturedID ? [capturedID, todo] : [todo];
 
-    submit(...args).then(() => history.push('/todolist'));
+    updateTodo(capturedID, todo) 
+    .then(() => history.push("/todolist"));
 
-    setTitle('');
-    setTask('');
-    setDate('');
-};
+    setTitle(""); 
+    setTask("");
+    setDate("");
+  };
 
   return (
     <div>
       <h2>Update Todo</h2>
-      <Form onSubmit={submitTodo}>
-        <Input
+      <form onSubmit={submitTodo}>
+        <input
           type="text"
           onChange={updateTitle}
           placeholder="label"
           value={title}
         />
-        <Input
-         type="text"
+        <input
+          type="text"
           onChange={updateTask}
           placeholder="task"
           value={task}
         />
-        <Input
+        <input
           type="text"
           onChange={updateDate}
           placeholder="due"
-          value={setDate}
+          value={date}
         />
         <Input type="submit" value="Update To Do" />
-      </Form>
+      </form>
     </div>
   );
 };
 
-export default connect(
+export default withRouter(connect(
   null,
   { updateTodo }
-)(UpdateTodo);
+)(TodoForm));

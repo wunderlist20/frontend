@@ -21,16 +21,29 @@ class TodoList extends React.Component {
         ) : (
           <>
             {this.props.todos.map(todo => (
-              <div className="card">
+              <div className="card" key={todo.id}>
                 <CardHeader tag="h3">{todo.title}</CardHeader>
-            <CardText>
+                <CardText>
                   <h1>{todo.task}</h1>
                   <button
                     className="btn-delete shd"
                     onClick={() => this.props.deleteTodo(todo.id)}
                   >
                     <h4>Delete</h4>
-                  </button><button><h4>Edit</h4></button>
+                  </button>
+                  <button
+                    onClick={() => {
+                      const { id, title, task, setDate } = todo;
+                      this.props.history.push("/update", [
+                        id,
+                        title,
+                        task,
+                        setDate
+                      ]);
+                    }}
+                  >
+                    <h4>Edit</h4>
+                  </button>
                 </CardText>
                 <CardFooter>
                   <h3>{todo.setDate}</h3>
@@ -46,7 +59,7 @@ class TodoList extends React.Component {
                   className="login-input"
                   onChange={this.handleChanges}
                 />
-                <i class="fas fa-list" />
+                <i className="fas fa-list" />
               </div>
               <div>
                 <Input
@@ -56,7 +69,7 @@ class TodoList extends React.Component {
                   className="login-input"
                   onChange={this.handleChanges}
                 />
-                <i class="fas fa-bell" />
+                <i className="fas fa-bell" />
               </div>
               <div>
                 <Input
@@ -66,13 +79,13 @@ class TodoList extends React.Component {
                   className="login-input"
                   onChange={this.handleChanges}
                 />
-                <i class="fas fa-calendar-alt" />
+                <i className="fas fa-calendar-alt" />
               </div>
               <div>
                 <div className="btn-login shd" onClick={this.addTodo}>
                   <h3>Add Todo</h3>
                 </div>
-                <i class="fas fa-sign-in-alt" />
+                <i className="fas fa-sign-in-alt" />
               </div>
             </Form>
           </>
@@ -111,7 +124,7 @@ export default connect(
   mapStateToProps,
   {
     fetchTodos,
-    addTodo, 
+    addTodo,
     deleteTodo
   }
 )(TodoList);

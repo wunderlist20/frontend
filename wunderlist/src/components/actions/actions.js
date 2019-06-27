@@ -14,9 +14,9 @@ export const ADD_TODO_FAILURE = "ADD_TODO_FAILURE";
 
 export const DELETE_TODO = "DELETE_TODO";
 
-export const EDIT_TODO_START = "FETCH_TODO_START";
-export const EDIT_TODO_SUCCESS = "FETCH_TODO_SUCCESS";
-export const EDIT_TODO_FAILURE = "FETCH_TODO_FAILURE";
+// export const EDIT_TODO_START = "FETCH_TODO_START";
+// export const EDIT_TODO_SUCCESS = "FETCH_TODO_SUCCESS";
+// export const EDIT_TODO_FAILURE = "FETCH_TODO_FAILURE";
 
 // Login
 
@@ -100,9 +100,10 @@ export const TODO_UPDATE_START = "TODO_UPDATE_START";
 export const TODO_UPDATE_SUCCESS = "TODO_UPDATE_SUCCESS";
 export const TODO_UPDATE_FAILURE = "TODO_UPDATE_FAILURE";
 export const updateTodo = (id, changes) => dispatch => {
+  console.log(changes)
   dispatch({ type: TODO_UPDATE_START });
-  axiosWithAuth()
-    .put(`/todos/${id}`, changes)
+  return axiosWithAuth()
+    .put(`https://wunderlist-02.herokuapp.com/api/todos/${id}`, changes)
     .then(res => {
       dispatch({ type: TODO_UPDATE_SUCCESS, payload: res.data });
     })
