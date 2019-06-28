@@ -31,7 +31,7 @@ class TodoList extends React.Component {
                         className="btn-delete shd"
                         onClick={() => this.props.deleteTodo(todo.id)}
                       >
-                        <h4>Delete</h4>
+                        <h4>Complete</h4>
                       </button>
                     </Col>
                     <button

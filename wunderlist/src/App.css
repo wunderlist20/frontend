@@ -280,7 +280,7 @@ i {
   box-shadow: -4px 5px 18px -3px rgba(0, 0, 0, 0.75);
   border-radius: 5px;
   background-color: red;
-  background: radial-gradient(circle, rgb(240, 138, 138) 0%, rgb(122, 43, 43) 100%);
+  background: radial-gradient(circle, rgb(47, 160, 98) 0%,lightgreen 100%);
   color: white;
   cursor: pointer;
 }
