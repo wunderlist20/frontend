@@ -19,6 +19,8 @@ export const TODO_UPDATE_START = "TODO_UPDATE_START";
 export const TODO_UPDATE_SUCCESS = "TODO_UPDATE_SUCCESS";
 export const TODO_UPDATE_FAILURE = "TODO_UPDATE_FAILURE";
 
+export const TOGGLE_TODO = "TOGGLE_TODO";
+
 
 // Login
 
@@ -106,3 +108,12 @@ export const updateTodo = (id, changes) => dispatch => {
 // Edit profile
 
 // Delete profile
+
+// Complete Todo
+
+export function toggleTodo(index) {
+  return {
+    type: TOGGLE_TODO,
+    payload: index
+  };
+};

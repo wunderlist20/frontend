@@ -48,29 +48,38 @@ const TodoForm = ({ updateTodo, history, location }) => {
   };
 
   return (
-    <div>
-      <h2>Update Todo</h2>
-      <form onSubmit={submitTodo}>
-        <input
+    <div className="update-wrapper">
+      <Form className="update-form" onSubmit={submitTodo}>
+        <h2>Need to make changes?</h2>
+        <Input
+          className="login-input"
           type="text"
           onChange={updateTitle}
           placeholder="label"
           value={title}
         />
-        <input
+        <Input
+          className="login-input"
           type="text"
           onChange={updateTask}
           placeholder="task"
           value={task}
         />
-        <input
+        <Input
+          className="login-input"
           type="text"
           onChange={updateDate}
           placeholder="due"
           value={date}
         />
-        <Input type="submit" value="Update To Do" />
-      </form>
+        <h3>
+          <Input
+            className="btn-login shd"
+            type="submit"
+            value="Update Todo"
+          />
+        </h3>
+      </Form>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
-import { Form, Input, CardHeader, CardText, CardFooter } from "reactstrap";
+import { Form, Input, CardHeader, CardText, CardFooter, Row, Col } from "reactstrap";
 
 import { fetchTodos, addTodo, deleteTodo } from "./actions/actions";
 
@@ -23,28 +23,32 @@ class TodoList extends React.Component {
             {this.props.todos.map(todo => (
               <div className="card" key={todo.id}>
                 <CardHeader tag="h3">{todo.title}</CardHeader>
-                <CardText>
+                <CardText className="card-text">
                   <h1>{todo.task}</h1>
-                  <button
-                    className="btn-delete shd"
-                    onClick={() => this.props.deleteTodo(todo.id)}
-                  >
-                    <h4>Delete</h4>
-                  </button>
-                  <button
-                    className="btn-edit shd"
-                    onClick={() => {
-                      const { id, title, task, setDate } = todo;
-                      this.props.history.push("/update", [
-                        id,
-                        title,
-                        task,
-                        setDate
-                      ]);
-                    }}
-                  >
-                    <h4>Edit</h4>
-                  </button>
+                  <Row className="edit-btn">
+                    <Col>
+                      <button
+                        className="btn-delete shd"
+                        onClick={() => this.props.deleteTodo(todo.id)}
+                      >
+                        <h4>Delete</h4>
+                      </button>
+                    </Col>
+                    <button
+                      className="btn-edit shd"
+                      onClick={() => {
+                        const { id, title, task, setDate } = todo;
+                        this.props.history.push("/update", [
+                          id,
+                          title,
+                          task,
+                          setDate
+                        ]);
+                      }}
+                    >
+                      <h4>Edit</h4>
+                    </button>
+                  </Row>
                 </CardText>
                 <CardFooter className="text-muted">
                   <h3>{todo.setDate}</h3>
@@ -115,6 +119,7 @@ class TodoList extends React.Component {
     this.props.addTodo(newTodo);
   };
 }
+
 
 const mapStateToProps = state => ({
   todos: state.todos,

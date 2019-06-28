@@ -9,7 +9,8 @@ import {
   ADD_TODO_SUCCESS,
   ADD_TODO_FAILURE,
   DELETE_TODO,
-  TODO_UPDATE_SUCCESS
+  TODO_UPDATE_SUCCESS, 
+  TOGGLE_TODO
 } from "../actions/actions";
 
 const initialState = {
@@ -63,13 +64,13 @@ export const reducer = (state = initialState, action) => {
     case ADD_TODO_START:
       return {
         ...state,
-        loading: true,
+        loading: true
       };
     case ADD_TODO_SUCCESS:
       return {
         ...state,
         loading: false,
-        todos: [...state.todos, action.payload ]
+        todos: [...state.todos, action.payload]
       };
     case ADD_TODO_FAILURE:
       return {
@@ -88,6 +89,16 @@ export const reducer = (state = initialState, action) => {
           todo.id === action.payload.id ? action.payload : todo
         )
       };
+    case TOGGLE_TODO:
+      return {
+        ...state,
+        todos: state.todos.map((todo, index) =>
+          action.payload === index
+            ? { ...todo, completed: !todo.completed }
+            : todo
+        )
+      };
+
     default:
       return state;
   }

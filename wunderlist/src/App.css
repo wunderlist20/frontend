@@ -147,15 +147,9 @@ h3 {
 }
 
 h4 {
-   font-size: 18px;
+  font-size: 18px;
   font-weight: bold;
   font-family: "Roboto", sans-serif;
-}
-
-form {
-  width: 400px;
-  height: 600px;
-  border: 1px solid black;
 }
 
 .login-wrapper {
@@ -195,7 +189,6 @@ form {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: -200px;
 }
 
 form div {
@@ -272,11 +265,7 @@ i {
   box-shadow: -4px 5px 18px -3px rgba(0, 0, 0, 0.75);
   border-radius: 5px;
   background-color: #00bfff;
-  background: radial-gradient(
-    circle,
-  #4694ea 0%,
-    rgb(148, 220, 233) 100%
-      );
+  background: radial-gradient(circle, #4694ea 0%, rgb(148, 220, 233) 100%);
   color: white;
   cursor: pointer;
 }
@@ -291,11 +280,7 @@ i {
   box-shadow: -4px 5px 18px -3px rgba(0, 0, 0, 0.75);
   border-radius: 5px;
   background-color: red;
-  background: radial-gradient(
-    circle,
-  red 0%,
-    darkred 100%
-      );
+  background: radial-gradient(circle, rgb(240, 138, 138) 0%, rgb(122, 43, 43) 100%);
   color: white;
   cursor: pointer;
 }
@@ -309,14 +294,17 @@ i {
   align-items: center;
   box-shadow: -4px 5px 18px -3px rgba(0, 0, 0, 0.75);
   border-radius: 5px;
-  background-color:blue;
-  background: radial-gradient(
-    circle,
-  blue 0%,
-    teal 100%
-      );
+  background-color: blue;
+  background: radial-gradient(circle, rgb(116, 116, 221) 0%, rgb(38, 190, 190) 100%);
   color: white;
   cursor: pointer;
+}
+
+.edit-btn {
+   display: flex;
+  justify-content: center;
+  position:absolute;
+  bottom:65px;
 }
 
 .shd {
@@ -365,10 +353,24 @@ i {
   flex-wrap: wrap;
 }
 
+.update-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.update-form {
+  margin-top: 50px;
+}
+
+.update-form h2 {
+  padding: 20px;
+}
+
 .todo-form {
   height: 350px;
   width: 380px;
-  margin: 20px;
+  margin: 30px;
 }
 
 .card {
@@ -379,8 +381,14 @@ i {
   animation: fade-in-fwd 1.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
+.card-text {
+padding: 20px;
+}
+
 .text-muted {
- margin-top: 50px;
+  position:absolute;
+  bottom:0;
+  width:100%;
 }
 
 @keyframes fade-in-fwd {
