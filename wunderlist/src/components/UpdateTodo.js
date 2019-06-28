@@ -37,7 +37,7 @@ const TodoForm = ({ updateTodo, history, location }) => {
   const submitTodo = e => {
     e.preventDefault();
 
-    const todo = { title, task, date };
+    const todo = { title, task, setDate: date };
 
     updateTodo(capturedID, todo) 
     .then(() => history.push("/todolist"));

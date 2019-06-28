@@ -5,7 +5,8 @@ import {
   FETCH_TODOS_START,
   FETCH_TODOS_SUCCESS,
   FETCH_TODOS_FAILURE,
-  ADD_TODO,
+  ADD_TODO_START,
+  ADD_TODO_SUCCESS,
   ADD_TODO_FAILURE,
   DELETE_TODO,
   TODO_UPDATE_SUCCESS
@@ -49,7 +50,7 @@ export const reducer = (state = initialState, action) => {
     case FETCH_TODOS_SUCCESS:
       return {
         ...state,
-        todos: [...state.todos, ...action.payload],
+        todos: action.payload,
         loading: false,
         error: null
       };
@@ -59,10 +60,16 @@ export const reducer = (state = initialState, action) => {
         loading: false,
         error: action.payload
       };
-    case ADD_TODO:
+    case ADD_TODO_START:
       return {
         ...state,
-        todos: action.payload
+        loading: true,
+      };
+    case ADD_TODO_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        todos: [...state.todos, action.payload ]
       };
     case ADD_TODO_FAILURE:
       return {

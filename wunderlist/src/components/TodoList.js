@@ -32,6 +32,7 @@ class TodoList extends React.Component {
                     <h4>Delete</h4>
                   </button>
                   <button
+                    className="btn-edit shd"
                     onClick={() => {
                       const { id, title, task, setDate } = todo;
                       this.props.history.push("/update", [
@@ -45,7 +46,7 @@ class TodoList extends React.Component {
                     <h4>Edit</h4>
                   </button>
                 </CardText>
-                <CardFooter>
+                <CardFooter className="text-muted">
                   <h3>{todo.setDate}</h3>
                 </CardFooter>
               </div>
